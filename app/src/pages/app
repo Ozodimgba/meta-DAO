@@ -1,0 +1,89 @@
+<section className="h-screen w-screen">
+     <div className="grid grid-cols-18 absolute z-1 h-full w-full">
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+     </div>
+
+     <div className="grid grid-rows-8 absolute z-2 h-screen w-full">
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+      <div className="border-[#BABABA17] border-[1px] h-full w-full"></div>
+     </div>
+
+     <div className="grid grid-rows-8 grid-cols-18 absolute z-3 bg-[#FF0642 h-full w-full">
+      <div className="h-full w-full"></div>
+
+      <div className="col-span-7 gap-[0.1rem] row-span-8 grid grid-rows-8 h-full w-full">
+      {/* <div className="w-full"></div>
+      <div className="w-full"></div> */}
+      <div className=" bg- row-span-3 w-full"></div>
+      <h2 className="font-main font-bold row-span-1 h-full text-7xl text-[#FF0642] px-2">
+        The MetaDAO
+      </h2>
+
+      <div className="text-white px-3 py-4  items-center row-span-2 font-main font-light text-3xl">
+      <p>MetaDAO is the first protocol on Solana using <span className="italic font-medium">futarchy</span> to reshape governance</p>
+      </div>
+      
+      <div className="text-white grid grid-cols-7 ">
+        <button className="col-span-4 text-2xl bg-[#FF0642] h-full">Learn more</button>
+      </div>
+      </div>
+
+      <div className="h-full col-span-3 w-full"></div>
+      
+      <div className="col-span-6 gap-[0.1rem] row-span-8 grid grid-rows-8 h-full w-full">
+      {/* <div className="w-full"></div>
+      <div className="w-full"></div> */}
+      <div className="row-span-1 w-full"></div>
+      <div className="bg-[#2B2B2B] row-span-3 p-3 w-full">
+        <h3 className="text-white font-main font-medium text-xl">futarchy</h3>
+        <div className="w-full grid mt-3 grid-cols-6">
+
+          <div className="bg-[#929191] flex justify-center items-center px-2 py-1">
+            <span className="font-main text-white">noun</span>
+          </div>
+        </div>
+        <h3 className="text-[#FFFFFF40] mt-3 font-main font-medium text-xl">[foo-ta-ki]</h3>
+        <p className="text-white font-main mt-2 text-[0.75rem]">
+        Futarchy is a governance model that relies on market predictions to make decisions, where participants use prediction markets to bet on the outcomes of proposed policies, and the policy with the highest market confidence is implemented.
+        </p>
+      </div>
+      
+      <div>
+
+      </div>
+      </div>
+     </div>
+     </section>
