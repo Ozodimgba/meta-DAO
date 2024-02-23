@@ -33,3 +33,16 @@ body {
 .grid-cols-18 {
   grid-template-columns: repeat(18, minmax(0, 1fr));
 }
+
+#secky {
+  background-color: black;
+  background-size: 70px 70px;
+  background-image:
+    linear-gradient(to right, #BABABA17 1px, transparent 1px),
+    linear-gradient(to bottom, #BABABA17 1px, transparent 1px);
+}
+
+#index-element {
+  pointer-events: none;
+}
+
