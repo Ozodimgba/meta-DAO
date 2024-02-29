@@ -1,13 +1,107 @@
+"use client"
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import { motion, useScroll, useAnimation, useTransform, MotionValue } from "framer-motion"
+import React, { useEffect, useRef, useState } from 'react';
+import Lottie from 'lottie-react';
+import animationData from '../../public/graph.json';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
+
 export default function Home() {
+  const paragraphRef = useRef(null);
+  const { scrollY, scrollYProgress } = useScroll();
+
+  const [pageHeight, setPageHeight] = useState(null);
+  const pageRef = useRef(null);
+
+   // Join the elements of the array with a space in between
+  //  const joined_string = text_array.join(" ");
+
+  const inputText = "Imagine instead of using presidents, CEOs, directors and all other forms of human leadership ...";
+  const textArray = inputText.split(/\s+/);
+
+  const textRefs = useRef(new Array(textArray.length).fill(null));
+
+  let x = 0;
+  scrollYProgress.onChange(value => {
+    x = value * 100; // Update x with the scroll percentage
+  });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Define your custom range (startX and endX)
+      const startX = 20;
+      const endX = 35;
+  
+      // Calculate the adjusted value within the custom range
+      const adjustedValue = (x - startX) / (endX - startX);
+  
+      // Clamp the adjusted value to be within [0, 1]
+      const clampedValue = Math.min(Math.max(adjustedValue, 0), 1);
+  
+      // Calculate the newIndex based on the adjusted value
+      const newIndex = Math.floor(clampedValue * textArray.length);
+  
+      for (let i = 0; i < textArray.length; i++) {
+        const textRef = textRefs.current[i];
+        if (textRef) {
+          textRef.style.color =
+            i < newIndex ? 'white' : i === newIndex ? '#FF0642' : '#FFFFFF15';
+        }
+      }
+    };
+  
+    // Attach listener on initial render and clean up on unmount
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [textArray.length, scrollYProgress]);
+
+  const textArr = "Framer Motion is a really cool tool".split(" ")
+
+  const revealThreshold = 0.5; // Adjust this threshold based on your design
+
+  const text = `...even in a democracy the preferences of the average American appear to have only a minuscule, near-zero, statistically non-significant impact upon public policy -| Martin Gilens and Benjamin Page`.split(" ");
+  const wordsToColor = ["minuscule,", "near-zero,", "non-significant", "statistically", "significant", "Martin", "Gilens", "and", "Benjamin", "Page"];
+  const joinedText = text.join(" ");
+
+  const [isAnimated, setIsAnimated] = useState(false);
+  const observerRef = useRef(null);
+
+  const options = {
+    root: null,
+    threshold: 0.5, // Start animation when 50% of the element is visible
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      setIsAnimated(entries[0].isIntersecting);
+    }, options);
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => {
+      observer.disconnect(); // Cleanup on unmount
+    };
+  }, [observerRef]);
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: false, // Set to false to control animation
+    animationData,
+  };
+
+
+
   return (
     <main
       className={`overflow-hidden max-w-screen ${inter.className}`}
     >
+      
      <section className="h-screen text-white w-screen">
      <div className="h-[70px] w-full"></div>
      <div className="h-[210px] flex w-full">
@@ -58,14 +152,35 @@ export default function Home() {
      <section className="h-[100vh] bg-black text-white w-screen">
 
       <div className="w-[100%] p-6 py-[10%] flex justify-center">
-        <div className="w-[80%]">
-        <p className="font-main text-white text-center text-3xl">...even in a democracy the preferences of the average American appear to have only a minuscule, <span className="text-[#FF0642]">near-zero, statistically non-significant</span> impact upon public policy -| <span className="text-[#FF0642]">Martin Gilens and Benjamin Page</span> </p>
+      <div className="w-[80%]">
+      {text.map((el, i) => (
+    <motion.span
+      className="font-main text-white text-center text-3xl"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 0.25,
+        delay: i / 10,
+      }}
+      key={i}
+      style={{ color: wordsToColor.includes(el) ? "#FF0642" : "inherit" }}
+    >
+      {el}{" "}
+    </motion.span>
+    ))}
+      
       </div>
       </div>
 
+      
+
       <div className="w-full px-[70px]">
         <div className="w-[70%]">
-        <h3 className="font-main font-medium leading-[4rem] text-5xl">Imagine instead of using <span className="text-[#FF0642]">presidents, CEOs, directors</span> <span className="text-[#ffffff50]"> and all other forms of human leadership</span> </h3>
+        {textArray.map((word, index) => (
+         <span className="font-main font-medium leading-[4rem] text-5xl" ref={(el) => (textRefs.current[index] = el)} key={index}>
+         {word}{' '}
+         </span>
+        ))}
         </div>
       </div>
      
@@ -76,7 +191,7 @@ export default function Home() {
 
       <div className="w-full py-4 px-[70px]">
         <div className="w-[70%]">
-        <h3 className="font-main font-bold leading-[4rem] text-5xl"><span className="text-[#FF0642]">MetaDAO</span> is pioneering this experiment on Solana.</h3>
+        <h3 className="font-main font-medium leading-[4rem] text-5xl"><span className="text-[#FF0642]">MetaDAO</span> is pioneering this experiment on Solana.</h3>
         </div>
       </div>
       
@@ -250,9 +365,61 @@ export default function Home() {
 
         
      </div>
+
+     <section className="w-full h-screen">
+     <Lottie animationData={animationData} width={"100%"} height={''} autoPlay />
      </section>
+
+    
+    
+     </section>
+
+     {/* <section className="h-screen font-main text-white w-screen bg-black">
+     <div className="h-full w-full bg-white grid grid-cols-2">
+      <motion.div 
+      className="bg-[#FF0642] flex justify-center items-center w-full h-full"
+      animate={{
+        width: ["0%", "100%"]
+      }}
+      transition={{
+        duration: 0.09,
+        ease: "easeInOut",
+        repeat: Infinity
+      }}
+      >
+      <motion.div
+      className="h-[200px] text-[#FF0642] flex justify-center items-center w-[200px] bg-white"
+      animate={{
+        scale: [1, 2, 2, 1, 1],
+        rotate: [0, 0, 180, 180, 0],
+        borderRadius: ["0%", "0%", "50%", "50%", "0%"]
+      }}
+      transition={{
+        duration: 2,
+        ease: "easeInOut",
+        times: [0, 0.2, 0.5, 0.8, 1],
+        repeat: Infinity,
+        repeatDelay: 1
+      }}
+      > THE METADAO </motion.div>
+      </motion.div>
+      <div className="text-[#FF0642] p-12 pt-[20%] w-full h-full">
+        <motion.div
+         animate={{
+
+        }}
+        >
+          <h3 className="text-5xl font-bold">The T.W.A.P</h3>
+        </motion.div>
+      </div>
+     </div>
+     </section> */}
     </main>
   );
 }
 
+
+function useDimension(contentRef: React.MutableRefObject<null>): { width: any; height: any; } {
+  throw new Error("Function not implemented.");
+}
 
