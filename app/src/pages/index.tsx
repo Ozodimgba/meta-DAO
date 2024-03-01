@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import { motion, useScroll, useAnimation, useTransform, MotionValue, useDragControls } from "framer-motion"
 import React, { useEffect, useRef, useState } from 'react';
+import Results from "./components/Results";
 import Lottie from 'lottie-react';
 import animationData from '../../public/graph.json';
 import { DotLottiePlayer, Controls } from '@dotlottie/react-player';
@@ -212,30 +213,10 @@ export default function Home() {
         <img src="use.svg" />
       </div>
       
-      <div className="w-[100%] py-6 flex justify-center">
-        <div className="w-[80%] gap-6 flex justify-center">
-        <button className="h-[70px] px-[10%] text-[#CB00FE] font-main font-bold text-4xl bg-[#06FFC3]"> BUY YES</button>
-        <button className="h-[70px] px-[10%] text-[#FFC93E] font-main font-bold text-4xl bg-[#FF0642]"> BUY NO</button>
-        </div>
-      </div>
+      {/**here */}
+      <Results />
 
-      <div className="w-[100%] px-[70px] py-6 flex flex-col">
-        <div className="flex items-center gap-3">
-        <h3 className="text-[#FF0642] text-2xl">RESULTS</h3>
-        <img src="clock.svg" />
-        </div>
-        
-        <div className="w-[100%] flex mt-4 gap-3 flex-col">
-        <div className="h-[40px] text-[#CB00FE] flex font-main">
-          <div className="w-full h-full bg-[#06FFC3]"></div>
-          <div className="flex justify-center px-3 items-center w-[10%]"> <span className="font-medium text-lg text-white">7 SOL</span> </div>
-        </div>
-        <div className="h-[40px] text-[#CB00FE] flex font-main">
-          <div className="w-[50%] h-full bg-[#FF0642]"></div>
-          <div className="flex justify-center px-3 items-center w-[10%]"> <span className="font-medium text-lg text-white">3.5 SOL</span> </div>
-        </div>
-        </div>
-      </div>
+      
      
      </section>
 
@@ -293,6 +274,7 @@ export default function Home() {
        onDragEnd={
         (event, info) => setExplainer(true)
       }
+       dragSnapToOrigin={true}
        dragControls={dragControls} className="h-[280px] w-[350px] flex flex-col justify-between bg-[#FF0642]">
        <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] bg-black"></div>
@@ -451,6 +433,17 @@ export default function Home() {
         <div className="w-[50px]">
         <button onClick={() => setExplainer(false)} className="bg-[#FF0642] text-white font-mono px-2">Close</button>
         </div>
+        <div className="mx-4 -rotate-90">
+        <DotLottiePlayer
+        src={`arrow.json`}
+        autoplay
+        loop
+        style={{
+          width: "60px"
+        }}
+      >
+      </DotLottiePlayer>
+        </div>
         </div>
         <motion.div
          animate={{
@@ -462,6 +455,7 @@ export default function Home() {
         >
           <h3 className="text-5xl font-mono">THE T.W.A.P</h3>
           <p className="font-mono mt-8">TWAPs are a common tool for calculating average prices of an asset over a specified time interval. This helps reduce the impact of short-term price fluctuations</p>
+          <code>TWAP = (∑ (Price * Time)) / ∑ Time </code>
         </motion.div>
       </div>
      </div>
