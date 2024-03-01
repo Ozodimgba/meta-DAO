@@ -39,8 +39,19 @@ const satoshi = localFont({
   variable: '--font-main'
 })
 
+const suisse = localFont({
+  src: [
+    {
+      path: './fonts/Suisse-Intl-Mono.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-mono'
+})
+
 export default function App({ Component, pageProps }: AppProps) {
-  return <main className={`${satoshi.variable}`}>
+  return <main className={`${satoshi.variable} ${suisse.variable}`}>
   <Component {...pageProps} /> 
   </main>;;
 }

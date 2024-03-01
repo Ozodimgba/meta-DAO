@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         main: ['var(--font-main)'],
+        mono: ['var(--font-mono)'],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

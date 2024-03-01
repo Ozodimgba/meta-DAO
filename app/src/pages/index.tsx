@@ -1,10 +1,12 @@
 "use client"
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { motion, useScroll, useAnimation, useTransform, MotionValue } from "framer-motion"
+import { motion, useScroll, useAnimation, useTransform, MotionValue, useDragControls } from "framer-motion"
 import React, { useEffect, useRef, useState } from 'react';
 import Lottie from 'lottie-react';
 import animationData from '../../public/graph.json';
+import { DotLottiePlayer, Controls } from '@dotlottie/react-player';
+import '@dotlottie/react-player/dist/index.css';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,8 +17,16 @@ export default function Home() {
   const { scrollY, scrollYProgress } = useScroll();
 
   const [pageHeight, setPageHeight] = useState(null);
+  const [showExplainer, setExplainer] = useState<boolean>(false)
   const pageRef = useRef(null);
 
+
+  const dragControls = useDragControls()
+  function startDrag(event:any) {
+    dragControls.start(event, { snapToCursor: true })
+  }
+
+  
    // Join the elements of the array with a space in between
   //  const joined_string = text_array.join(" ");
 
@@ -186,6 +196,9 @@ export default function Home() {
      
      </section>
 
+
+
+
      <section className="bg-black text-white w-screen">
 
 
@@ -225,6 +238,10 @@ export default function Home() {
       </div>
      
      </section>
+
+
+
+
 
      <section id="secky" className="h-[200vh] relative flex justify-between items-center w-screen">
        
@@ -271,14 +288,18 @@ export default function Home() {
        </div>
        </div>
 
-       <div className=" flex cursor-pointer justify-end h-full w-full">
-       <div className="h-[280px] w-[350px] flex flex-col justify-between bg-[#FF0642]">
+       <div onPointerDown={startDrag} className=" flex cursor-pointer justify-end h-full w-full">
+       <motion.div drag
+       onDragEnd={
+        (event, info) => setExplainer(true)
+      }
+       dragControls={dragControls} className="h-[280px] w-[350px] flex flex-col justify-between bg-[#FF0642]">
        <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] bg-black"></div>
         </div>
 
-        <div className="w-full h-full flex flex-col justify-center">
+        <div  className="w-full h-full flex flex-col justify-center">
       <div className="w-full px-6 pr-[28%] py-3">
       <h3 className="font-main font-bold text-lg text-white">Autocrat Program</h3>
       <p className="font-main text-sm mt-1 text-white">Orchestrates the futarchy processs by managing prosals, creating conditional vaults and executing decision based on market outcomes</p>
@@ -289,7 +310,7 @@ export default function Home() {
           <div className="h-[70px] w-[70px] "></div>
           <div className="h-[70px] w-[70px] bg-black"></div>
         </div>
-       </div>
+       </motion.div>
        </div>
 
        <div className=" h-full w-full">
@@ -334,12 +355,12 @@ export default function Home() {
       
 
       </div>
-
-       
-
-       
-
      </section>
+
+
+
+
+      {/*Proposals section */}
      <section className="h-screen w-screen py-[10%] bg-black">
      <div className="h-[50vh] bg-black flex justify-center items-center">
         <div className="bg-black w-[80%] h-full relative">
@@ -365,16 +386,39 @@ export default function Home() {
 
         
      </div>
-
-     <section className="w-full h-screen">
-     <Lottie animationData={animationData} width={"100%"} height={''} autoPlay />
-     </section>
-
-    
     
      </section>
 
-     {/* <section className="h-screen font-main text-white w-screen bg-black">
+     <section className="w-screen bg-black relative text-white">
+      <div className="h-full w-full absolut">
+      <DotLottiePlayer
+        src={animationData}
+        autoplay
+        loop
+        className="w-full "
+      >
+        {/* <Controls /> */}
+      </DotLottiePlayer>
+      </div>
+
+      <div className="absolute z-2 h-full w-full ">
+        <h3>200</h3>
+      </div>
+      
+     </section>
+
+
+     {/*show explainer */}
+     { showExplainer ?
+     <motion.section
+     animate={{
+      height: ["0%", "100%"]
+    }}
+    transition={{
+      duration: 0.4,
+      ease: "easeInOut",
+    }}
+     className="h-screen fixed top-0 left-0 font-main text-white w-screen bg-black">
      <div className="h-full w-full bg-white grid grid-cols-2">
       <motion.div 
       className="bg-[#FF0642] flex justify-center items-center w-full h-full"
@@ -382,9 +426,8 @@ export default function Home() {
         width: ["0%", "100%"]
       }}
       transition={{
-        duration: 0.09,
+        duration: 0.29,
         ease: "easeInOut",
-        repeat: Infinity
       }}
       >
       <motion.div
@@ -404,16 +447,27 @@ export default function Home() {
       > THE METADAO </motion.div>
       </motion.div>
       <div className="text-[#FF0642] p-12 pt-[20%] w-full h-full">
+        <div className="w-full mb-3 h-[50px] flex items-center justify-start">
+        <div className="w-[50px]">
+        <button onClick={() => setExplainer(false)} className="bg-[#FF0642] text-white font-mono px-2">Close</button>
+        </div>
+        </div>
         <motion.div
          animate={{
-
+          translateY: ["300%", "0%"],
+        }}
+        transition={{
+         duration: 0.3,
         }}
         >
-          <h3 className="text-5xl font-bold">The T.W.A.P</h3>
+          <h3 className="text-5xl font-mono">THE T.W.A.P</h3>
+          <p className="font-mono mt-8">TWAPs are a common tool for calculating average prices of an asset over a specified time interval. This helps reduce the impact of short-term price fluctuations</p>
         </motion.div>
       </div>
      </div>
-     </section> */}
+     </motion.section>
+     : null}
+     
     </main>
   );
 }
