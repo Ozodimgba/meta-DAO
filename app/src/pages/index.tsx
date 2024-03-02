@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { motion, useScroll, useAnimation, useTransform, MotionValue, useDragControls } from "framer-motion"
 import React, { useEffect, useRef, useState } from 'react';
 import Results from "./components/Results";
+import Roles from "./components/Roles";
 import Lottie from 'lottie-react';
 import animationData from '../../public/graph.json';
 import { DotLottiePlayer, Controls } from '@dotlottie/react-player';
@@ -19,6 +20,7 @@ export default function Home() {
 
   const [pageHeight, setPageHeight] = useState(null);
   const [showExplainer, setExplainer] = useState<boolean>(false)
+  const [showRoles, setRoles] = useState<boolean>(false)
   const pageRef = useRef(null);
 
 
@@ -27,6 +29,21 @@ export default function Home() {
     dragControls.start(event, { snapToCursor: true })
   }
 
+  const variants = {
+    initial: {
+      y: '0', // Start below the viewport
+      scale: 1,
+      x: 0
+    },
+    visible: {
+      y: 0, // Move into view
+      scale: 0.6,
+      x: '-10vw', // Translate left
+      transition: { 
+        type: 'spring', stiffness: 100
+      } 
+    }
+  };
   
    // Join the elements of the array with a space in between
   //  const joined_string = text_array.join(" ");
@@ -44,8 +61,8 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       // Define your custom range (startX and endX)
-      const startX = 20;
-      const endX = 35;
+      const startX = 10;
+      const endX = 21;
   
       // Calculate the adjusted value within the custom range
       const adjustedValue = (x - startX) / (endX - startX);
@@ -221,6 +238,36 @@ export default function Home() {
      </section>
 
 
+    <section className="h-screen w-screen relative bg-black">
+     <div className="h-full w-full absolute z-1">
+     <DotLottiePlayer
+        src={`meta.json`}
+        autoplay
+        loop
+        // style={{
+        //   width: "60px"
+        // }}
+      >
+      </DotLottiePlayer>
+     </div>
+     <div className=" h-full w-full grid grid-cols-2 absolute z-3 grid-rows-2">
+     <div className="h-full w-full p-[70px]">
+      <p className="text-lg font-main  text-white">The metaDAO the truth the good part is the only way to find the get way of lorem ipsum dolor</p>
+     </div>
+
+     <div className="h-full w-full p-[70px]">
+      <p className="text-lg font-main text-end text-white">The metaDAO the truth the good part is the only way to find the get way of lorem ipsum dolor</p>
+     </div>
+
+     <div className="h-full w-full flex items-end p-[70px]">
+      <p className="text-lg font-main text-white">The metaDAO the truth the good<br/> part is the only way to find the get way of lorem ipsum dolor</p>
+     </div>
+
+     <div className="h-full w-full flex items-end p-[70px]">
+      <p className="text-lg font-main text-end text-white">The metaDAO the truth the good <br/>  part is the only way to find the get way of lorem ipsum dolor</p>
+     </div>
+     </div>
+    </section>
 
 
 
@@ -331,10 +378,33 @@ export default function Home() {
 
       <div id="index-element" className="absolute z-3 h-screen w-screen flex flex-col justify-center items-center">
       <h3 className="font-main font-bold text-lg text-[#FF0642]">The MetaDAO</h3>
-      <div className="w-[25%]">
-      <p className="text-center font-main text-[#FF0642]">The DAO consists of 4 orchestrating programs</p>
+      <div className="w-full px-[40%]">
+      <p className="text-center font-main text-[#FF0642]">The DAO consists of 4 orchestrating components</p>
       </div>
       
+
+      </div>
+
+      <div id="index-element" className="grid font-main grid-cols-5 absolute z-6 h-screen w-screen">
+        <div className="py-[10%] flex items-end">
+
+          <div className="">
+           
+          <div className=" rotate-90">
+        <DotLottiePlayer
+        src={`arrow.json`}
+        autoplay
+        loop
+        style={{
+          width: "60px"
+        }}
+      >
+      </DotLottiePlayer>
+        </div> 
+        <h3 className="text-white px-5">Drag to explain</h3>
+          </div>
+        
+        </div>
 
       </div>
      </section>
@@ -358,7 +428,7 @@ export default function Home() {
         </div>
 
         <div className="absolute w-full p-[70px] text-white flex items-center justify-center h-full z-3">
-        <h3 className="font-main font-medium text-center text-5xl">Proposals are anything that can be represented by a <span className="text-[#FF0642]"> Solana VM instruction</span></h3>
+        <h3 className="font-main font-medium text-center text-5xl">Proposals are the determinants of the <span className="text-[#FF0642]"> MetaDAO&apos;s future</span></h3>
         </div>
 
         <div className="absolute w-full text-white flex items-center justify-center h-full z-4">
@@ -371,24 +441,191 @@ export default function Home() {
     
      </section>
 
-     <section className="w-screen bg-black relative text-white">
-      <div className="h-full w-full absolut">
+     {showRoles ?
+     <motion.section
+     animate={{
+      height: ["0%", "100%"]  // Start from a scaled-down state
+    }}
+     transition={{
+       duration: 0.15
+     }}
+     className="h-screen z-30 fixed top-0 left-0 font-main text-white w-screen bg-white grid grid-rows-2">
+     <div className="h-full w-full"></div>
+     <motion.div 
+     animate={{
+      y: ["100%", "0%"]
+     }}
+     transition={{
+      duration: 0.3,
+      delay: 0.07
+     }}
+     className="h-full w-full bg-[#FF0642]">
+       <div className="w-full px-[70px] py-4 flex justify-between"> 
+       <button onClick={() => setRoles(false)} className="relative px-3 text-[#FF0642] font-mono "></button>
+ 
+        <button className="bg-white font-mono px-3 text-[#FF0642]">Enterperneur</button>
+       
+        <button onClick={() => setRoles(false)} className="bg-white relative px-3 text-[#FF0642] font-mono ">x</button>
+       </div>
+ 
+       <div className="px-[70px] text-center">
+         <p>The main issue is that the SVG and the text container are siblings, and z-index applies only between siblings. To fix this, nest the text container within the SVG container.</p>
+       </div>
+     </motion.div>
+     </motion.section>
+     : null}
+     
+    <section className="h-screen relative bg-black w-screen">
+      <div className="h-full w-full absolute z-3 flex gap-4 flex-col items-center justify-center">
+        <motion.div
+        animate={{
+          x: ["0%", "-40%"],  // Adjust the value based on your needs
+          scale: ["100%", "80%"]
+        }}
+        transition={{
+          duration: 6
+        }}
+        className=""
+        >
+        <DotLottiePlayer
+        src={`prop.json`}
+        autoplay
+        loop
+        style={{
+          width: "60vw"
+        }}
+      >
+      </DotLottiePlayer>
+        </motion.div>
+      
+      </div>
+      <div className="h-full text-white font-main w-full grid grid-cols-2">
+        <div></div>
+       <div className="h-full py-[12%] w-full">
+        <h3 className="font-medium text-3xl">Anyone can submit a proposal</h3>
+
+       </div>
+      </div>
+    </section>
+
+     <section className="items-center w-screen flex flex-col bg-black">
+      <div className="text-white flex flex-col items-center text-3xl py-[15%] font-main">
+        <h3 className="text-[#FF0642] py-4 font-mono">ROLES</h3>
+        <h3 className="text-center">In institutions there are roles, the same applies to MetaDAO.<br/> In MetaDAO there are <span className="text-[#FF0642]">3</span> roles</h3>
+      </div>
+    <div className="flex justify-between w-full px-[10%]">
+       <motion.div
+       animate={{
+        translateY:["80%", "-20%", "0%"],
+        borderRadius: ["0%", "0%", "50%", "50%", "0%"]
+       }}
+       transition={{
+        duration: 0.8,
+        ease: "easeInOut",
+       }}
+       onClick={() => setRoles(true)} className="">
+       <Roles role="Enterpreneur" />
+       </motion.div>
+
+       <motion.div
+       animate={{
+        translateY:["80%", "-20%", "0%"],
+        borderRadius: ["0%", "0%", "50%", "50%", "0%"]
+       }}
+       transition={{
+        duration: 0.8,
+        delay: 0.1,
+        ease: "easeInOut",
+       }}
+       onClick={() => setRoles(true)} className="">
+       <Roles role="Analyst" />
+       </motion.div>
+
+       <motion.div
+       animate={{
+        translateY:["80%", "-20%", "0%"],
+        borderRadius: ["0%", "0%", "50%", "50%", "0%"]
+       }}
+       transition={{
+        duration: 0.8,
+        delay: 0.2,
+        ease: "easeInOut",
+       }}
+       onClick={() => setRoles(true)} className="">
+      <Roles role="Cyber-Agent" />
+       </motion.div>
+
+     
+        
+        
+        
+    </div>
+    
+    <div className="text-white font-main text-xl text-center py-[10%] px-[70px]">
+      <p>Remember, MetaDAOs are adaptable!  The specific roles and responsibilities may evolve to best suit the DAO&apos;s specific mission and the talents of its members.</p>
+    </div>
+</section>
+
+     <section className="w-screen text-black h-screen bg-[#FAFAFA]">
+      <div className="absolute h-screen pt-[20%] flex items-end z-1 bg-white">
       <DotLottiePlayer
         src={animationData}
         autoplay
         loop
-        className="w-full "
+        className=""
       >
-        {/* <Controls /> */}
+      
       </DotLottiePlayer>
       </div>
 
-      <div className="absolute z-2 h-full w-full ">
-        <h3>200</h3>
+      <div className="h-full w-[75%] absolute z-4 px-[50px] pt-8">
+       <h3 className="font-mono text-[#FF0642] ">METADAO STATS</h3>
+       <h2 className="font-bold text-6xl mt-5">MetaDAO has been breaking stats since its inception in September &apos;23</h2>
+       <p className="font-main text-xl mt-4">Ensure that the motion.div has position: absolute or position: relative. The transform: translate property works best with these position types. If its not positioned, it may be inheriting styles that prevent the translation.</p>
       </div>
+
+      <div className="absolute px-[50px] pb-[6%] text-black grid grid-cols-6 z-2 h-full w-full ">
+        <div className="h-full flex items-end w-full">
+
+          <div className="text-black font-main">
+          <h3 className="font-medium font-main text-[3.3rem]">200m</h3>
+          <span className="font-mono text-[#FF0642] text-[0.8rem]">TOTAL VALUE LOCKED</span>
+          </div>
+        
+        </div>
+
+        <div className="h-full flex items-end w-full">
+
+<div className="text-black font-main">
+<h3 className="font-medium font-main text-[3.3rem]">200</h3>
+<span className="font-mono text-[#FF0642] text-[0.8rem]">UNIQUE HOLDERS</span>
+</div>
+
+</div>
+
+<div className="h-full flex items-end w-full">
+
+<div className="text-black font-main">
+<h3 className="font-medium font-main text-[3.3rem]">40K%</h3>
+<span className="font-mono text-[#FF0642] text-[0.8rem]">META PRICE GROWTH</span>
+</div>
+
+</div>
+      </div>
+
+      
       
      </section>
 
+    <section
+    style={{ 
+      backgroundImage: 'url("frame.svg")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center' 
+    }}
+    className="h-screen w-screen bg-white">
+
+    </section>
 
      {/*show explainer */}
      { showExplainer ?
@@ -461,7 +698,28 @@ export default function Home() {
      </div>
      </motion.section>
      : null}
-     
+     <section
+     style={{ 
+      backgroundImage: 'url("map.svg")',
+      backgroundSize: 'contain',
+      backgroundPosition: 'center' 
+    }}
+     className="bg-black h-screen w-screen" >
+      <div className="h-full w-full bg-[#00000030] grid grid-rows-8">
+       <div className="row-span-7 flex p-[20%] justify-center items-center bg-gradient-to-t from-black via-black/30 to-transparent h-full w-full">
+        <h3 className="text-white text-center text-5xl font-main font-bold">
+        A country with no lands, no leaders and no community
+        </h3>
+       </div>
+       <div className="h-full w-full px-5 flex items-center justify-between pr-8 text-white bg-black">
+       <h3 className="font-mono">READ MORE</h3>
+       <button className="bg-[#FF0642] px-3 py-2 font-mono">
+        HERE
+       </button>
+       </div>
+      </div>
+
+     </section>
     </main>
   );
 }
