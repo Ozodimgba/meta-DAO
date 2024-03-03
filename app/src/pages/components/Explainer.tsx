@@ -13,6 +13,7 @@ interface ComponentProps {
     update: React.Dispatch<React.SetStateAction<boolean>>; 
     data: Data;
   }
+
 function Explainer({ update, data }: ComponentProps) {
 
   const ExplainerOne = () => {
@@ -40,8 +41,34 @@ function Explainer({ update, data }: ComponentProps) {
     )
   }
 
+  const ExplainerTwo = () => {
+    return(
+        <div className='h-full w-full pb-[10%] text-[#FF0642]'>
+          <h3>The TWAP program in MetaDao is a key mechanism for implementing its futarchy governance system. Since blockchains can&apos;t truly &apos;revert&apos; transactions, conditional vaults create a system of simulated reverts for prediction markets.</h3>
+          <h4 className='font-bold mt-5'>Here&apos;s how it works:</h4>
+          <ol className='mt-5'>
+            <li>
+            <span className='font-bold'>Conditional Vault Creation:</span> Before a proposal goes to market,
+            a conditional vault is created for each relevant token (like USDC and META). These vaults are linked to the proposal and a designated settlement authority
+            </li>
+            <li className='mt-4'>
+            <span className='font-bold'>Minting Conditional Tokens:</span> Two types of conditional tokens are minted within the vault: (like USDC and META).  
+            </li>
+            <li className='mt-4 pl-8'>
+            <span className='font-bold'>Conditional-on-Pass Tokens:</span>Represent successful proposals and entitle holders to the underlying tokens upon proposal passage.  
+            </li>
+            <li className='mt-4 pl-8'>
+            <span className='font-bold'>Conditional-on-Fail Tokens:</span>Represent unsuccessful proposals. If the proposal fails, these tokens are used to &apos;revert&apos; the market by returning the original tokens deposited for prediction. 
+            </li>
+          </ol>
+          <p className='mt-4'>By using these conditional tokens, MetaDao simulates the ability to revert trades based on the proposal&apos;s outcome. This allows prediction markets to function effectively within the framework of the futarchy system.</p>
+        </div>
+    )
+  }
+
   const content = [
     <ExplainerOne key={1} />,
+    <ExplainerTwo key={2} />
   ]
 
   return (
@@ -79,7 +106,7 @@ function Explainer({ update, data }: ComponentProps) {
         repeat: Infinity,
         repeatDelay: 3
       }}
-      > THE METADAO </motion.div>
+      >{data.title}</motion.div>
       </motion.div>
       <div className="text-[#FF0642] p-12 pt-[20%] w-full h-full">
         <div className="w-full mb-3 h-[50px] flex items-center justify-start">

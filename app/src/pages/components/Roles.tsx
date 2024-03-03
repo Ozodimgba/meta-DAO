@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 
 interface Roles {
   role: string;
+  update: React.Dispatch<React.SetStateAction<number>>; 
+  data: number
 }
 
-function Roles({ role }: Roles) {
+function Roles({ role, update, data }: Roles) {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
@@ -18,6 +20,7 @@ function Roles({ role }: Roles) {
     >
   <motion.div 
    whileHover={{ scale: 1.01, y: -30 }}
+   onClick={() => update(data)}
   className="relative max-h-72 max-w-72 text-black hover:text-white">
     <svg width="100%" height="100%" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

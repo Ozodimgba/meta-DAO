@@ -17,6 +17,8 @@ import TextReveal from "./components/TextReaveal";
 import ProposalAnimation from "./components/ProposalAnimation";
 import Explainer from "./components/Explainer";
 import { data } from "./api/data";
+import Role from "./components/Role";
+import ProposalHeader from "./components/ProposalHeader";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,6 +32,7 @@ export default function Home() {
   const [pageHeight, setPageHeight] = useState(null);
   const [showExplainer, setExplainer] = useState<boolean>(false)
   const [showRoles, setRoles] = useState<boolean>(false)
+  const [roleIndex, setRoleIndex] = useState<number>(0)
   const pageRef = useRef(null);
 
   const lottieRef = useRef<DotLottieCommonPlayer>(null);
@@ -395,66 +398,10 @@ export default function Home() {
 
 
       {/*Proposals section */}
-     <section className="h-screen w-screen py-[10%] bg-black">
-     <div className="h-[50vh] bg-black flex justify-center items-center">
-        <div className="bg-black w-[80%] h-full relative">
-
-        <div className="absolute w-full flex justify-between h-full z-1">
-        <div className="w-[70px] h-full border-[0.001rem] border-y-0 border-[#BABABA17]"></div>
-        <div className="w-[70px] h-full border-[0.001rem] border-y-0 border-[#BABABA17]"></div>
-        </div>
-
-        <div className="absolute w-full flex flex-col justify-between h-full z-2">
-        <div className="w-full h-[70px] border-[0.001rem] border-x-0 border-[#BABABA17]"></div>
-        <div className="w-full h-[70px] border-[0.001rem] border-x-0 border-[#BABABA17]"></div>
-        </div>
-
-        <div className="absolute w-full p-[70px] text-white flex items-center justify-center h-full z-3">
-        <h3 className="font-main font-medium text-center text-5xl">Proposals are the determinants of the <span className="text-[#FF0642]"> MetaDAO&apos;s future</span></h3>
-        </div>
-
-        <div className="absolute w-full text-white flex items-center justify-center h-full z-4">
-        <img src="frontdrop.svg" />
-        </div>
-        </div>
-
-        
-     </div>
-    
-     </section>
+      <ProposalHeader />
 
      {showRoles ?
-     <motion.section
-     animate={{
-      height: ["0%", "100%"]  // Start from a scaled-down state
-    }}
-     transition={{
-       duration: 0.15
-     }}
-     className="h-screen z-30 fixed top-0 left-0 font-main text-white w-screen bg-white grid grid-rows-2">
-     <div className="h-full w-full"></div>
-     <motion.div 
-     animate={{
-      y: ["100%", "0%"]
-     }}
-     transition={{
-      duration: 0.3,
-      delay: 0.07
-     }}
-     className="h-full w-full bg-[#FF0642]">
-       <div className="w-full px-[70px] py-4 flex justify-between"> 
-       <button onClick={() => setRoles(false)} className="relative px-3 text-[#FF0642] font-mono "></button>
- 
-        <button className="bg-white font-mono px-3 text-[#FF0642]">Enterperneur</button>
-       
-        <button onClick={() => setRoles(false)} className="bg-white relative px-3 text-[#FF0642] font-mono ">x</button>
-       </div>
- 
-       <div className="px-[70px] text-center">
-         <p>The main issue is that the SVG and the text container are siblings, and z-index applies only between siblings. To fix this, nest the text container within the SVG container.</p>
-       </div>
-     </motion.div>
-     </motion.section>
+     <Role update={setRoles} data={roleIndex} />
      : null}
 
     <ProposalAnimation />
@@ -476,7 +423,7 @@ export default function Home() {
         ease: "easeInOut",
        }}
        onClick={() => setRoles(true)} className="">
-       <Roles role="Enterpreneur" />
+       <Roles update={setRoleIndex} data={0} role="Enterpreneur" />
        </motion.div>
 
        <motion.div
@@ -490,7 +437,7 @@ export default function Home() {
         ease: "easeInOut",
        }}
        onClick={() => setRoles(true)} className="">
-       <Roles role="Analyst" />
+       <Roles update={setRoleIndex} data={1} role="Analyst" />
        </motion.div>
 
        <motion.div
@@ -504,7 +451,7 @@ export default function Home() {
         ease: "easeInOut",
        }}
        onClick={() => setRoles(true)} className="">
-      <Roles role="Cyber-Agent" />
+      <Roles update={setRoleIndex} data={2} role="Cyber-Agent" />
        </motion.div>
 
      

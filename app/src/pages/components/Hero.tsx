@@ -9,6 +9,7 @@ function Hero() {
   const { ref, replay } = useScramble({ 
     text: "The MetaDAO" 
   });
+  
   return (
     <section className="h-screen text-white w-screen">
      <div className="h-[70px] w-full"></div>
