@@ -19,6 +19,7 @@ import Explainer from "./components/Explainer";
 import { data } from "./api/data";
 import Role from "./components/Role";
 import ProposalHeader from "./components/ProposalHeader";
+import { useScramble } from "use-scramble";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,6 +37,10 @@ export default function Home() {
   const pageRef = useRef(null);
 
   const lottieRef = useRef<DotLottieCommonPlayer>(null);
+
+  const { ref, replay } = useScramble({ 
+    text: "ROLES" 
+  });
   
   useEffect(() => {
     // Play on scroll as soon as the animation is visible
@@ -409,7 +414,7 @@ export default function Home() {
 
      <section className="items-center w-screen flex flex-col bg-black">
       <div className="text-white flex flex-col items-center text-3xl py-[15%] font-main">
-        <h3 className="text-[#FF0642] py-4 font-mono">ROLES</h3>
+        <h3 ref={ref} onMouseOver={replay} onFocus={replay} className="text-[#FF0642] py-4 font-mono" />
         <h3 className="text-center">In institutions there are roles, the same applies to MetaDAO.<br/> In MetaDAO there are <span className="text-[#FF0642]">3</span> roles</h3>
       </div>
     <div className="flex justify-between w-full px-[10%]">
@@ -480,8 +485,8 @@ export default function Home() {
 
       <div className="h-full w-[75%] absolute z-4 px-[50px] pt-8">
        <h3 className="font-mono text-[#FF0642] ">METADAO STATS</h3>
-       <h2 className="font-bold text-6xl mt-5">MetaDAO has been breaking stats since its inception in September &apos;23</h2>
-       <p className="font-main text-xl mt-4">Ensure that the motion.div has position: absolute or position: relative. The transform: translate property works best with these position types. If its not positioned, it may be inheriting styles that prevent the translation.</p>
+       <h2 className="font-bold text-6xl mt-5">MetaDAO has been doing quite well since its launch in September 2023</h2>
+       <p className="font-main text-xl mt-4">The DAO stats have been very much on the green side with over 100% gain in participants in the last 2 months and a literal over 1800 percent token pump. MetaDAO is one of the fastest growing projects on Solana </p>
       </div>
 
       <div className="absolute px-[50px] pb-[6%] text-black grid grid-cols-6 z-2 h-full w-full ">
@@ -517,6 +522,10 @@ export default function Home() {
       
      </section>
 
+     <section className="h-[20vh] w-screen bg-white">
+
+     </section>
+
     <section
     style={{ 
       backgroundImage: 'url("frame.svg")',
@@ -526,6 +535,9 @@ export default function Home() {
     className="h-screen w-screen bg-white">
 
     </section>
+    <section className="h-[20vh] w-screen bg-white">
+
+     </section>
 
      {/*show explainer */}
      { showExplainer ?
