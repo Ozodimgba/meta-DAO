@@ -9,7 +9,7 @@ function ProposalHeader() {
 
   return (
     <section className=" w-screen bg-black">
-     <div className="h-[50vh] bg-black flex justify-center items-center">
+     <div className="h-[60vh] bg-black flex justify-center items-center">
         <div className="bg-black w-[80%] h-full relative">
 
         <div className="absolute w-full flex justify-between h-full z-1">
@@ -27,7 +27,7 @@ function ProposalHeader() {
         <h3 className="font-main font-medium text-center text-5xl">Proposals are the determinants of the <span className="text-[#FF0642]"> MetaDAO&apos;s future</span></h3>
         </div>
 
-        <div className="absolute w-full text-white flex items-center justify-center h-full z-4">
+        <div id='index-element' className="absolute w-full text-white flex items-center justify-center h-full z-4">
         <img src="frontdrop.svg" />
         </div>
         </div>

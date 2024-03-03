@@ -32,11 +32,16 @@ function ProposalAnimation() {
     </div>
     <div className="h-full text-white font-main w-full grid grid-cols-2">
       <div></div>
-     <div className="h-full py-[12%] w-full">
+     <div className="h-full py-[13%] px-[70px] w-full">
      <TextReveal delay={0.5}> 
-     <h3 className="font-medium text-3xl">Anyone can submit a proposal</h3>
-      <h2>This text will reveal on scroll!</h2>
-      <p>You can place any content to be revealed here.</p>
+     <h3 className="font-bold text-4xl">Anyone can submit an Improvement proposal</h3>
+      <p className='mt-4'>Improvement proposals, likely submitted by MetaDAO members, aim to enhance the DAO&apos;s functionality. These proposals could target anything from refining the voting system to choosing new investment strategies. By proposing and voting on these improvements, MetaDAO members can work together to optimize the DAO&apos;s structure and increase its chances of achieving its goals.</p>
+      <div className='bg-white mt-5 text-black px-8 py-5'>
+      <p className=''>These proposal costs about 9.84 SOL</p>
+      </div>
+
+      <p className='mt-5'>Business projects are how the Meta-DAO converts financial capital into revenue-generating products. Business direct actions operate over those products, tweaking parameters in the pursuit of customer satisfaction and profitability. Operations projects and direct actions support the business, ensuring that the Meta-DAO has the right people and resources to create new products and manage existing ones.</p>
+      
     </TextReveal>
       
 
