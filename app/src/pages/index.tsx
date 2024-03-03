@@ -261,8 +261,13 @@ export default function Home() {
        <motion.div 
        id="1"
        whileHover={{ scale:1.03, y: -20}}
+       style={{ 
+        backgroundImage: 'url("red.svg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center', 
+      }}
        onClick={() => handleDrag(0)}
-       className="h-[280px] w-[350px] cursor-pointer flex flex-col justify-between bg-[#FF0642]">
+       className="h-[280px] w-[350px] cursor-pointer flex flex-col justify-between ">
         <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] "></div>
           <div className="h-[70px] w-[70px] bg-black"></div>
@@ -286,7 +291,12 @@ export default function Home() {
        <motion.div
        whileHover={{ scale:1.03, y: -20}}
        onClick={() => handleDrag(1)}
-       className="h-[280px] w-[350px] flex flex-col justify-between bg-[#FF0642]">
+       style={{ 
+        backgroundImage: 'url("red90.svg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center', 
+      }}
+       className="h-[280px] w-[350px] flex flex-col justify-between">
         <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] "></div>
@@ -310,7 +320,12 @@ export default function Home() {
        <motion.div 
        whileHover={{ scale:1.03, y: 20}}
        onClick={() => handleDrag(2)}
-       className="h-[280px] w-[350px] z-4 cursor-pointer flex flex-col justify-between bg-[#FF0642]">
+       style={{ 
+        backgroundImage: 'url("red180.svg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center', 
+      }}
+       className="h-[280px] w-[350px] z-4 cursor-pointer flex flex-col justify-between">
        <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] bg-black"></div>
@@ -335,7 +350,12 @@ export default function Home() {
        id="4"
        whileHover={{ scale:1.03, y: 20}}
        onClick={() => handleDrag(3)}
-       className="h-[280px] cursor-pointer w-[350px] z-5 flex flex-col justify-between bg-[#FF0642]">
+       style={{ 
+        backgroundImage: 'url("red270.svg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center', 
+      }}
+       className="h-[280px] cursor-pointer w-[350px] z-5 flex flex-col justify-between">
        <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] bg-black"></div>

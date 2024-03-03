@@ -44,31 +44,64 @@ function Explainer({ update, data }: ComponentProps) {
   const ExplainerTwo = () => {
     return(
         <div className='h-full w-full pb-[10%] text-[#FF0642]'>
-          <h3>The TWAP program in MetaDao is a key mechanism for implementing its futarchy governance system. Since blockchains can&apos;t truly &apos;revert&apos; transactions, conditional vaults create a system of simulated reverts for prediction markets.</h3>
+          <h3>TWAP stands for Time-Weighted Average Price. It&apos;s a metric used in finance, particularly by institutional investors, to track the average execution price of a security (stock, bond, etc.) over a specific period</h3>
           <h4 className='font-bold mt-5'>Here&apos;s how it works:</h4>
           <ol className='mt-5'>
             <li>
-            <span className='font-bold'>Conditional Vault Creation:</span> Before a proposal goes to market,
-            a conditional vault is created for each relevant token (like USDC and META). These vaults are linked to the proposal and a designated settlement authority
+            <span className='font-bold'>TWAP Calculation:</span> At the end of the decision window, the TWAP of the META token price over that period is calculated.
             </li>
             <li className='mt-4'>
-            <span className='font-bold'>Minting Conditional Tokens:</span> Two types of conditional tokens are minted within the vault: (like USDC and META).  
-            </li>
-            <li className='mt-4 pl-8'>
-            <span className='font-bold'>Conditional-on-Pass Tokens:</span>Represent successful proposals and entitle holders to the underlying tokens upon proposal passage.  
-            </li>
-            <li className='mt-4 pl-8'>
-            <span className='font-bold'>Conditional-on-Fail Tokens:</span>Represent unsuccessful proposals. If the proposal fails, these tokens are used to &apos;revert&apos; the market by returning the original tokens deposited for prediction. 
+            <span className='font-bold'>Comparing Pre- and Post-Proposal TWAP: </span>This post-proposal TWAP is compared with the TWAP of the META token calculated for an equivalent time window immediately before the proposal was submitted.
             </li>
           </ol>
-          <p className='mt-4'>By using these conditional tokens, MetaDao simulates the ability to revert trades based on the proposal&apos;s outcome. This allows prediction markets to function effectively within the framework of the futarchy system.</p>
+          <h4 className='font-bold mt-5'>Why use a TWAP:</h4>
+          <ol className='mt-5'>
+            <li>
+            <span className='font-bold'>Minimizes Manipulation:</span> TWAP helps reduce the impact of any single large trade designed to artificially influence the price and sway the proposal&apos;s outcome.
+            </li>
+            <li className='mt-4'>
+            <span className='font-bold'>Fairness:</span> It&apos;s a transparent and relatively neutral mechanism, relying on market forces to determine the outcome.
+            </li>
+          </ol>
+        </div>
+    )
+  }
+
+  const ExplainerThree = () => {
+    return(
+        <div className='h-full w-full pb-[10%] text-[#FF0642]'>
+          <h3>The Autocrat program acts as the backbone of Meta-DAO&apos;s futarchy system. It&apos;s the conductor that orchestrates the entire process, ensuring proposals are submitted, markets are created, and decisions are executed based on market outcomes.</h3>
+          <h4 className='font-bold mt-5'>Key responsibilities:</h4>
+          <ol className='mt-5'>
+            <li>
+            <span className='font-bold'>Proposal Management:</span>The Autocrat facilitates the creation and submission of proposals by users.
+           stores proposal details like descriptions links and links to relevant information.
+            </li>
+            <li className='mt-4'>
+            <span className='font-bold'>Conditional Vault Creation:</span>When a proposal is submitted, the Autocrat program automatically creates two conditional vaults.
+            </li>
+            <li className='mt-4'>
+            <span className='font-bold'>Market Orchestration:</span>The Autocrat program interacts with a separate TWAP program (Time-Weighted Average Price) to track the performance of the conditional markets associated with each proposal.
+            </li>
+            <li className='mt-4'>
+            <span className='font-bold'>Outcome Execution:</span>Once the decision window closes (e.g., 24 hours), the Autocrat program analyzes the TWAP data from the prediction markets.
+            Based on the prevailing market sentiment (higher TWAP in &quot;pass&quot; or &quot;fail&quot; market), the Autocrat automatically executes the pre-defined instructions associated with the winning outcome.
+            </li>
+          </ol>
+          <h4 className='font-bold mt-5'>Benefits of the Autocrat program:</h4>
+          <ol className='mt-5'>
+            <li>
+            <span className='font-bold'>Transparency and Trust:</span>By relying on a programmatic approach, the Autocrat program reduces the potential for human manipulation and fosters trust in the fairness of the futarchy system.
+            </li>
+          </ol>
         </div>
     )
   }
 
   const content = [
     <ExplainerOne key={1} />,
-    <ExplainerTwo key={2} />
+    <ExplainerTwo key={2} />,
+    <ExplainerThree key={3} />
   ]
 
   return (
