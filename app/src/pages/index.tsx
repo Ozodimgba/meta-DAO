@@ -18,6 +18,7 @@ import ProposalAnimation from "./components/ProposalAnimation";
 import Explainer from "./components/Explainer";
 import { data } from "./api/data";
 import Role from "./components/Role";
+
 import ProposalHeader from "./components/ProposalHeader";
 import { useScramble } from "use-scramble";
 
@@ -112,8 +113,8 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       // Define your custom range (startX and endX)
-      const startX = 10;
-      const endX = 21;
+      const startX = 7;
+      const endX = 18;
   
       // Calculate the adjusted value within the custom range
       const adjustedValue = (x - startX) / (endX - startX);

@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { DotLottiePlayer, Controls } from '@dotlottie/react-player';
+import { FiInfo } from "react-icons/fi";
 import TextReveal from './TextReaveal';
 
 function ProposalAnimation() {
@@ -36,8 +37,9 @@ function ProposalAnimation() {
      <TextReveal delay={0.5}> 
      <h3 className="font-bold text-4xl font-mono">Anyone can submit an Improvement proposal</h3>
       <p className='mt-4'>Improvement proposals, likely submitted by MetaDAO members, aim to enhance the DAO&apos;s functionality. These proposals could target anything from refining the voting system to choosing new investment strategies. By proposing and voting on these improvements, MetaDAO members can work together to optimize the DAO&apos;s structure and increase its chances of achieving its goals.</p>
-      <div className='bg-white mt-5 text-black px-8 py-5'>
-      <p className=''>These proposal costs about 9.84 SOL</p>
+      <div className='bg-white mt-5 flex items-center gap-3 text-black px-8 py-5'>
+      <FiInfo size={25} />
+      <p className=''>Each proposal voting period(trading) takes 10 days</p>
       </div>
 
       <p className='mt-5'>Business projects are how the Meta-DAO converts financial capital into revenue-generating products. Business direct actions operate over those products, tweaking parameters in the pursuit of customer satisfaction and profitability. Operations projects and direct actions support the business, ensuring that the Meta-DAO has the right people and resources to create new products and manage existing ones.</p>
