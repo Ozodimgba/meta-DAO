@@ -1,14 +1,22 @@
 "use client"
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import { motion, useScroll, useAnimation, useTransform, MotionValue, useDragControls } from "framer-motion"
+import { motion, useScroll, useAnimation, useTransform, MotionValue, useDragControls, useInView } from "framer-motion"
 import React, { useEffect, useRef, useState } from 'react';
 import Results from "./components/Results";
 import Roles from "./components/Roles";
 import Lottie from 'lottie-react';
 import animationData from '../../public/graph.json';
+import type { DotLottieCommonPlayer } from "@dotlottie/react-player";
 import { DotLottiePlayer, Controls } from '@dotlottie/react-player';
 import '@dotlottie/react-player/dist/index.css';
+import AnimateText from "./components/AnimateH3";
+import Hero from "./components/Hero";
+import SectionOne from "./components/SectionOne";
+import TextReveal from "./components/TextReaveal";
+import ProposalAnimation from "./components/ProposalAnimation";
+import Explainer from "./components/Explainer";
+import { data } from "./api/data";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,15 +26,44 @@ export default function Home() {
   const paragraphRef = useRef(null);
   const { scrollY, scrollYProgress } = useScroll();
 
+  const [dataNumber, setDataNumber] = useState<number>(0)
   const [pageHeight, setPageHeight] = useState(null);
   const [showExplainer, setExplainer] = useState<boolean>(false)
   const [showRoles, setRoles] = useState<boolean>(false)
   const pageRef = useRef(null);
 
+  const lottieRef = useRef<DotLottieCommonPlayer>(null);
+  
+  useEffect(() => {
+    // Play on scroll as soon as the animation is visible
+    lottieRef.current?.playOnScroll();
+    
+    // Options:
+    lottieRef.current?.playOnScroll({
+        positionCallback: (position: number) => console.log(position),
+        segments: [50, 100],
+        threshold: [0.5, 1],
+    });
+    
+    // Stop playing on scroll
+    lottieRef.current?.stopPlayOnScroll();    
+  }, [lottieRef]);
+
 
   const dragControls = useDragControls()
+
   function startDrag(event:any) {
     dragControls.start(event, { snapToCursor: true })
+  }
+
+  function startDragTwo(event:any) {
+    dragControls.start(event, { snapToCursor: true })
+  }
+
+  const handleDrag = ( indexNumber: number) => {
+    console.log(indexNumber)
+    setDataNumber(indexNumber)
+    setExplainer(true)
   }
 
   const variants = {
@@ -48,7 +85,13 @@ export default function Home() {
    // Join the elements of the array with a space in between
   //  const joined_string = text_array.join(" ");
 
-  const inputText = "Imagine instead of using presidents, CEOs, directors and all other forms of human leadership ...";
+  const inputText = `Imagine instead of using presidents, CEOs, directors and all other forms of 
+  representative leadership we used a governance model that can be applied at it's best on a blockchain.
+  DAOs allow a collective with similar visons to come together and create an organiztion owned by all its members
+  with ownership represented by an on chain token. That sounds amazimg right?.. the only problem is DAOs have a few operational challenges.
+  First, they mostly face vote apathy where most member are not incentived to vote and by that concentrating the voting power in
+  the hands of a few, Expertise gap is another challenge, since all member are equal, non-expertise have equal voting power as 
+  experts...then there is also Sybil Attacks and coordination challenges. To fix this MetaDAO is pioneering an experiment on solana to use futarchy to run itself.`;
   const textArray = inputText.split(/\s+/);
 
   const textRefs = useRef(new Array(textArray.length).fill(null));
@@ -98,6 +141,9 @@ export default function Home() {
   const [isAnimated, setIsAnimated] = useState(false);
   const observerRef = useRef(null);
 
+  const pgRef = useRef(null);
+  const inView = useInView(pgRef, { amount: 0.5, once: true})
+
   const options = {
     root: null,
     threshold: 0.5, // Start animation when 50% of the element is visible
@@ -130,62 +176,17 @@ export default function Home() {
       className={`overflow-hidden max-w-screen ${inter.className}`}
     >
       
-     <section className="h-screen text-white w-screen">
-     <div className="h-[70px] w-full"></div>
-     <div className="h-[210px] flex w-full">
-      <div className="h-[70px] w-[840px]"></div>
-      <div className="h-[210px] px-4 py-2 w-[350px] bg-[#2B2B2B]">
-        <h3 className="text-white font-main font-medium text-xl">futarchy</h3>
-        <div className="w-full grid mt-3 grid-cols-6">
+     <Hero />
 
-          <div className="bg-[#929191] flex justify-center items-center px-2 py-1">
-            <span className="font-main text-white">noun</span>
-          </div>
-        </div>
-        <h3 className="text-[#FFFFFF40] mt-3 font-main font-medium text-xl">[foo-ta-ki]</h3>
-        <p className="text-white font-main mt-2 text-[0.7rem]">
-        Futarchy is a governance model that relies on market predictions to make decisions, where participants use prediction markets to bet on the outcomes of proposed policies, and the policy with the highest market confidence is implemented.
-        </p>
-      </div>
-     </div>
-
-     <div className="h-[70px] flex w-full">
-      <div className="h-[70px] w-[70px]">
-      </div>
-     <h2 className="font-main font-bold h-full text-7xl text-[#FF0642] px-1">
-        The MetaDAO
-      </h2>
-     </div>
-
-     <div className="h-[140px] flex w-full">
-      <div className="h-[70px] w-[70px]">
-      </div>
-      <div className="text-white w-[490px] h-full items-center row-span-2 font-main font-light text-3xl">
-        <div className="py-4 px-1">
-        <p>MetaDAO is the first protocol on Solana using <span className="italic">futarchy</span> to reshape governance</p>
-        </div>
-      </div>
-     </div>
-
-     <div className="h-[70px] flex w-full">
-      <div className="h-[70px] w-[70px]">
-      </div>
-     <button className="font-main font-medium h-full w-[210px] text-xl bg-[#FF0642] px-1">
-        Learn how it works
-      </button>
-     </div>
-
-     </section>
-
-     <section className="h-[100vh] bg-black text-white w-screen">
+     <section className=" bg-black text-white w-screen">
 
       <div className="w-[100%] p-6 py-[10%] flex justify-center">
-      <div className="w-[80%]">
+      <div ref={pgRef} className="w-[80%]">
       {text.map((el, i) => (
     <motion.span
       className="font-main text-white text-center text-3xl"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={inView ? { opacity: 1 } : { opacity: 0 }}
       transition={{
         duration: 0.25,
         delay: i / 10,
@@ -205,7 +206,7 @@ export default function Home() {
       <div className="w-full px-[70px]">
         <div className="w-[70%]">
         {textArray.map((word, index) => (
-         <span className="font-main font-medium leading-[4rem] text-5xl" ref={(el) => (textRefs.current[index] = el)} key={index}>
+         <span className="font-main font-medium leading-[3rem] text-4xl" ref={(el) => (textRefs.current[index] = el)} key={index}>
          {word}{' '}
          </span>
         ))}
@@ -230,7 +231,7 @@ export default function Home() {
         <img src="use.svg" />
       </div>
       
-      {/**here */}
+      
       <Results />
 
       
@@ -238,44 +239,19 @@ export default function Home() {
      </section>
 
 
-    <section className="h-screen w-screen relative bg-black">
-     <div className="h-full w-full absolute z-1">
-     <DotLottiePlayer
-        src={`meta.json`}
-        autoplay
-        loop
-        // style={{
-        //   width: "60px"
-        // }}
-      >
-      </DotLottiePlayer>
-     </div>
-     <div className=" h-full w-full grid grid-cols-2 absolute z-3 grid-rows-2">
-     <div className="h-full w-full p-[70px]">
-      <p className="text-lg font-main  text-white">The metaDAO the truth the good part is the only way to find the get way of lorem ipsum dolor</p>
-     </div>
-
-     <div className="h-full w-full p-[70px]">
-      <p className="text-lg font-main text-end text-white">The metaDAO the truth the good part is the only way to find the get way of lorem ipsum dolor</p>
-     </div>
-
-     <div className="h-full w-full flex items-end p-[70px]">
-      <p className="text-lg font-main text-white">The metaDAO the truth the good<br/> part is the only way to find the get way of lorem ipsum dolor</p>
-     </div>
-
-     <div className="h-full w-full flex items-end p-[70px]">
-      <p className="text-lg font-main text-end text-white">The metaDAO the truth the good <br/>  part is the only way to find the get way of lorem ipsum dolor</p>
-     </div>
-     </div>
-    </section>
-
+    {/**here */}
+    <SectionOne />
 
 
      <section id="secky" className="h-[200vh] relative flex justify-between items-center w-screen">
        
       <div className="absolute z-6 h-screen w-screen grid grid-cols-2 grid-rows-2 gap-3">
-       <div className="flex justify-end h-full w-full">
-       <div className="h-[280px] w-[350px] flex flex-col justify-between bg-[#FF0642]">
+       <div onPointerDown={startDrag} className="flex justify-end h-full w-full">
+       <motion.div 
+       id="1"
+       whileHover={{ scale:1.03, y: -20}}
+       onClick={() => handleDrag(0)}
+       className="h-[280px] w-[350px] cursor-pointer flex flex-col justify-between bg-[#FF0642]">
         <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] "></div>
           <div className="h-[70px] w-[70px] bg-black"></div>
@@ -292,7 +268,7 @@ export default function Home() {
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] bg-black"></div>
         </div>
-       </div>
+       </motion.div>
        </div>
 
        <div className="h-full w-full">
@@ -316,13 +292,11 @@ export default function Home() {
        </div>
        </div>
 
-       <div onPointerDown={startDrag} className=" flex cursor-pointer justify-end h-full w-full">
-       <motion.div drag
-       onDragEnd={
-        (event, info) => setExplainer(true)
-      }
-       dragSnapToOrigin={true}
-       dragControls={dragControls} className="h-[280px] w-[350px] flex flex-col justify-between bg-[#FF0642]">
+       <div  className=" flex  justify-end h-full w-full">
+       <motion.div 
+       whileHover={{ scale:1.03, y: 20}}
+       onClick={() => handleDrag(2)}
+       className="h-[280px] w-[350px] z-4 cursor-pointer flex flex-col justify-between bg-[#FF0642]">
        <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] bg-black"></div>
@@ -342,8 +316,12 @@ export default function Home() {
        </motion.div>
        </div>
 
-       <div className=" h-full w-full">
-       <div className="h-[280px] cursor-pointer w-[350px] flex flex-col justify-between bg-[#FF0642]">
+       <div onPointerDown={startDrag} className=" h-full w-full">
+       <motion.div
+       id="4"
+       whileHover={{ scale:1.03, y: 20}}
+       onClick={() => handleDrag(3)}
+       className="h-[280px] cursor-pointer w-[350px] z-5 flex flex-col justify-between bg-[#FF0642]">
        <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] bg-black"></div>
@@ -360,7 +338,7 @@ export default function Home() {
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] "></div>
         </div>
-       </div>
+       </motion.div>
        </div>
       </div>
 
@@ -401,7 +379,7 @@ export default function Home() {
       >
       </DotLottiePlayer>
         </div> 
-        <h3 className="text-white px-5">Drag to explain</h3>
+        <h3 className="text-white px-5">Tap to explain</h3>
           </div>
         
         </div>
@@ -474,39 +452,13 @@ export default function Home() {
      </motion.div>
      </motion.section>
      : null}
-     
-    <section className="h-screen relative bg-black w-screen">
-      <div className="h-full w-full absolute z-3 flex gap-4 flex-col items-center justify-center">
-        <motion.div
-        animate={{
-          x: ["0%", "-40%"],  // Adjust the value based on your needs
-          scale: ["100%", "80%"]
-        }}
-        transition={{
-          duration: 6
-        }}
-        className=""
-        >
-        <DotLottiePlayer
-        src={`prop.json`}
-        autoplay
-        loop
-        style={{
-          width: "60vw"
-        }}
-      >
-      </DotLottiePlayer>
-        </motion.div>
-      
-      </div>
-      <div className="h-full text-white font-main w-full grid grid-cols-2">
-        <div></div>
-       <div className="h-full py-[12%] w-full">
-        <h3 className="font-medium text-3xl">Anyone can submit a proposal</h3>
 
-       </div>
-      </div>
-    </section>
+
+
+
+
+    <ProposalAnimation />
+
 
      <section className="items-center w-screen flex flex-col bg-black">
       <div className="text-white flex flex-col items-center text-3xl py-[15%] font-main">
@@ -571,6 +523,7 @@ export default function Home() {
       <DotLottiePlayer
         src={animationData}
         autoplay
+        onEvent={() => {}}
         loop
         className=""
       >
@@ -588,8 +541,8 @@ export default function Home() {
         <div className="h-full flex items-end w-full">
 
           <div className="text-black font-main">
-          <h3 className="font-medium font-main text-[3.3rem]">200m</h3>
-          <span className="font-mono text-[#FF0642] text-[0.8rem]">TOTAL VALUE LOCKED</span>
+          <h3 className="font-medium font-main text-[3.3rem]">14.4K</h3>
+          <span className="font-mono text-[#FF0642] text-[0.8rem]">CIRCULATING SUPPLY</span>
           </div>
         
         </div>
@@ -598,7 +551,7 @@ export default function Home() {
 
 <div className="text-black font-main">
 <h3 className="font-medium font-main text-[3.3rem]">200</h3>
-<span className="font-mono text-[#FF0642] text-[0.8rem]">UNIQUE HOLDERS</span>
+<span className="font-mono text-[#FF0642] text-[0.8rem]">PARTICIPANTS</span>
 </div>
 
 </div>
@@ -606,7 +559,7 @@ export default function Home() {
 <div className="h-full flex items-end w-full">
 
 <div className="text-black font-main">
-<h3 className="font-medium font-main text-[3.3rem]">40K%</h3>
+<h3 className="font-medium font-main text-[3.3rem]">1800%</h3>
 <span className="font-mono text-[#FF0642] text-[0.8rem]">META PRICE GROWTH</span>
 </div>
 
@@ -629,74 +582,7 @@ export default function Home() {
 
      {/*show explainer */}
      { showExplainer ?
-     <motion.section
-     animate={{
-      height: ["0%", "100%"]
-    }}
-    transition={{
-      duration: 0.4,
-      ease: "easeInOut",
-    }}
-     className="h-screen fixed top-0 left-0 font-main text-white w-screen bg-black">
-     <div className="h-full w-full bg-white grid grid-cols-2">
-      <motion.div 
-      className="bg-[#FF0642] flex justify-center items-center w-full h-full"
-      animate={{
-        width: ["0%", "100%"]
-      }}
-      transition={{
-        duration: 0.29,
-        ease: "easeInOut",
-      }}
-      >
-      <motion.div
-      className="h-[200px] text-[#FF0642] flex justify-center items-center w-[200px] bg-white"
-      animate={{
-        scale: [1, 2, 2, 1, 1],
-        rotate: [0, 0, 180, 180, 0],
-        borderRadius: ["0%", "0%", "50%", "50%", "0%"]
-      }}
-      transition={{
-        duration: 2,
-        ease: "easeInOut",
-        times: [0, 0.2, 0.5, 0.8, 1],
-        repeat: Infinity,
-        repeatDelay: 1
-      }}
-      > THE METADAO </motion.div>
-      </motion.div>
-      <div className="text-[#FF0642] p-12 pt-[20%] w-full h-full">
-        <div className="w-full mb-3 h-[50px] flex items-center justify-start">
-        <div className="w-[50px]">
-        <button onClick={() => setExplainer(false)} className="bg-[#FF0642] text-white font-mono px-2">Close</button>
-        </div>
-        <div className="mx-4 -rotate-90">
-        <DotLottiePlayer
-        src={`arrow.json`}
-        autoplay
-        loop
-        style={{
-          width: "60px"
-        }}
-      >
-      </DotLottiePlayer>
-        </div>
-        </div>
-        <motion.div
-         animate={{
-          translateY: ["300%", "0%"],
-        }}
-        transition={{
-         duration: 0.3,
-        }}
-        >
-          <h3 className="text-5xl font-mono">THE T.W.A.P</h3>
-          <p className="font-mono mt-8">TWAPs are a common tool for calculating average prices of an asset over a specified time interval. This helps reduce the impact of short-term price fluctuations</p>
-          <code>TWAP = (∑ (Price * Time)) / ∑ Time </code>
-        </motion.div>
-      </div>
-     </div>
-     </motion.section>
+      <Explainer update={setExplainer} data={data[dataNumber]} />
      : null}
      <section
      style={{ 

@@ -15,24 +15,24 @@ function Results() {
         return Math.random() * (max - min) + min; 
       }
 
-    const handleChoice = () => {
-      if(!bought) {
-      setBought(true)
-      let randomNumber = getRandomNumber(0.5,0.8); 
-      let randomNumber2 = getRandomNumber(0.4, 1.0)
-      console.log(randomNumber);
-      setYesValue(randomNumber); 
-      setNoValue(randomNumber2);
-      }
+      const handleChoice = () => {
+        if (!bought) {
+          setBought(true);
       
-    };
+          // Get random numbers here...
+          const randomNumber = Math.random() * (0.8 - 0.5) + 0.5;
+           const randomNumber2 = Math.random() * (1.0 - 0.4) + 0.4;
+
+          setYesValue(randomNumber);
+          setNoValue(randomNumber2);
+        }
+      };
 
     
     
     const Counter = ({ maxValue, duration }: CounterProps) => {
         const [count, setCount] = useState<number>(0);
 
-        console.log(count, maxValue, duration)
     
         function calculateTimeInterval(maxValue: number, duration: number) {
             if (duration <= 0) {
@@ -43,7 +43,6 @@ function Results() {
     
         useEffect(() => {
             const timeInterval = calculateTimeInterval(maxValue, duration);
-            console.log(timeInterval)
     
             const interval = setInterval(() => {
                 setCount(prevCount => {
