@@ -31,7 +31,7 @@ function Role({ update, data }: ComponentProps) {
   ]
 
   const { ref, replay } = useScramble({ 
-    text: `The ${contentData[data].role}`
+    text: `The ${contentData[data]?.role}`
   });
   
 
@@ -65,7 +65,7 @@ function Role({ update, data }: ComponentProps) {
       </div>
 
       <div className="px-[70px] text-center">
-        <p>{contentData[data].content}</p>
+        <p>{contentData[data]?.content}</p>
       </div>
     </motion.div>
     </motion.section>

@@ -106,7 +106,7 @@ function Explainer({ update, data }: ComponentProps) {
         repeat: Infinity,
         repeatDelay: 3
       }}
-      >{data.title}</motion.div>
+      >{data?.title}</motion.div>
       </motion.div>
       <div className="text-[#FF0642] p-12 pt-[20%] w-full h-full">
         <div className="w-full mb-3 h-[50px] flex items-center justify-start">
@@ -136,7 +136,7 @@ function Explainer({ update, data }: ComponentProps) {
         >
           <h3 className="text-5xl font-mono">{data?.title}</h3>
           <div className='overflow-y-scroll max-w-full h-[55vh]'>
-          <div className="font-mono mt-8">{content[data.content]}</div>
+          <div className="font-mono mt-8">{content[data?.content]}</div>
           </div>
           
           {/* <code>TWAP = (∑ (Price * Time)) / ∑ Time </code> */}
