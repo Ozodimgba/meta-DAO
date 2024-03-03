@@ -98,10 +98,20 @@ function Explainer({ update, data }: ComponentProps) {
     )
   }
 
+  const ExplainerFour = () => {
+    return(
+        <div className='h-full w-full pb-[10%] text-[#FF0642]'>
+          <h3>The META token is the passport of the MetaDAO. It is the native token of the DAO</h3>
+          
+        </div>
+    )
+  }
+
   const content = [
     <ExplainerOne key={1} />,
     <ExplainerTwo key={2} />,
-    <ExplainerThree key={3} />
+    <ExplainerThree key={3} />,
+    <ExplainerFour key={4} />
   ]
 
   return (

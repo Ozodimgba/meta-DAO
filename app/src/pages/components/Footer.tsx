@@ -1,5 +1,6 @@
 import React from 'react'
 import { useScramble } from 'use-scramble';
+import Router, { useRouter } from 'next/router';
 
 function Footer() {
 
@@ -10,6 +11,9 @@ function Footer() {
   const { ref: newRef, replay: newReplay } = useScramble({ 
         text: "READ MORE" 
       });
+  
+  const router = useRouter()
+
 
   return (
     <section
@@ -29,7 +33,7 @@ function Footer() {
        onMouseOver={newReplay} 
        onFocus={newReplay}
        />
-       <button className="bg-[#FF0642] px-3 py-2 font-mono">
+       <button onClick={() => router.push("https://blog.themetadao.org/")} className="bg-[#FF0642] px-3 py-2 font-mono">
         HERE
        </button>
        </div>
