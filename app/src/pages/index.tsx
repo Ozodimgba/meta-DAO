@@ -204,7 +204,7 @@ export default function Home() {
       
 
       <div className="w-full px-[70px]">
-        <div className="w-[70%]">
+        <div className="w-full">
         {textArray.map((word, index) => (
          <span className="font-main font-medium leading-[3rem] text-4xl" ref={(el) => (textRefs.current[index] = el)} key={index}>
          {word}{' '}
@@ -218,12 +218,13 @@ export default function Home() {
 
 
 
-     <section className="bg-black text-white w-screen">
+     <section className="bg-black pt-[10%] text-white w-screen">
 
 
       <div className="w-full py-4 px-[70px]">
         <div className="w-[70%]">
-        <h3 className="font-main font-medium leading-[4rem] text-5xl"><span className="text-[#FF0642]">MetaDAO</span> is pioneering this experiment on Solana.</h3>
+        <h3 className="font-main font-medium leading-[4rem] text-5xl">What is <span className="text-[#FF0642]">futarchy</span> really?</h3>
+        <p className="font-main mt-3 text-xl">Created by Professor Robin Hanson, Futarchy is a proposed governance system that aims to improve decision-making by harnessing the power of prediction markets.  It envisions a structure where policies are judged based on their measurable outcomes. Participants in prediction markets buy and sell shares representing the likelihood of specific future events, such as the success of a proposed policy. Here is an example below </p>
         </div>
       </div>
       
