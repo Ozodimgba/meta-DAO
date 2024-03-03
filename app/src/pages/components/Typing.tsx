@@ -13,7 +13,7 @@ function Typing({
     className,
     }: AnimateProps) {
   
-  const joinText = text.split('')
+  const joinText = text?.split('')
   const wordsToColor = ["minuscule,", "near-zero,", "non-significant", "statistically", "significant", "Martin", "Gilens", "and", "Benjamin", "Page"];
 
   const ref = useRef(null)

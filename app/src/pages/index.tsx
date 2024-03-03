@@ -228,7 +228,7 @@ export default function Home() {
         </div>
       </div>
       
-      <div className="w-full py-4 px-[70px]">
+      <div className="w-full mt-5 py-4 px-[70px]">
         <img src="use.svg" />
       </div>
       
@@ -454,10 +454,6 @@ export default function Home() {
      </motion.section>
      : null}
 
-
-
-
-
     <ProposalAnimation />
 
 
@@ -543,7 +539,7 @@ export default function Home() {
 
           <div className="text-black font-main">
           <h3 className="font-medium font-main text-[3.3rem]">14.4K</h3>
-          <span className="font-mono text-[#FF0642] text-[0.8rem]">CIRCULATING SUPPLY</span>
+          <span className="font-mono text-[#FF0642] text-[1rem]">CIRC. SUPPLY</span>
           </div>
         
         </div>
@@ -551,8 +547,8 @@ export default function Home() {
         <div className="h-full flex items-end w-full">
 
 <div className="text-black font-main">
-<h3 className="font-medium font-main text-[3.3rem]">200</h3>
-<span className="font-mono text-[#FF0642] text-[0.8rem]">PARTICIPANTS</span>
+<h3 className="font-medium font-main text-[3.3rem]">200+</h3>
+<span className="font-mono text-[#FF0642] text-[1rem]">PARTICIPANTS</span>
 </div>
 
 </div>
@@ -561,7 +557,7 @@ export default function Home() {
 
 <div className="text-black font-main">
 <h3 className="font-medium font-main text-[3.3rem]">1800%</h3>
-<span className="font-mono text-[#FF0642] text-[0.8rem]">META PRICE GROWTH</span>
+<span className="font-mono text-[#FF0642] text-[1rem]">META PRICE GROWTH</span>
 </div>
 
 </div>

@@ -20,7 +20,7 @@ const TextReveal: React.FC<TextRevealProps> = ({ children, delay = 0 }) => {
     if (ref.current) observer.observe(ref.current);
 
     return () => {
-      if (ref.current) observer.unobserve(ref.current);
+      if (ref.current) observer.unobserve(ref?.current);
     };
   }, []);
 

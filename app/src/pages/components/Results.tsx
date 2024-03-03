@@ -106,9 +106,9 @@ function Results() {
       {bought ? <div className='text-white px-[70px]'>
         <h3 className='font-mono'>EXPLAINER</h3>
         <div className='mt-4'>
-        { yesValue > noValue ? <p>The YES stock is valued more than the NO stock so the Organization will have to retain the CEO</p> : <p>The sell stock is valued more than the buy stock so the Organization will have to fire the CEO</p>}
+        { yesValue > noValue ? <p>The YES stock is valued more than the NO stock so the Organization will have to retain the CEO Matt Ken. The YES stock being valued more than the NO stock suggests a positive market sentiment towards Quantum Leap&apos;s current direction and Matt Ken&apos;s leadership. This can indicate investor confidence in the company&apos;s strategy and its ability to achieve its goals.</p> : <p>The sell stock is valued more than the buy stock so the Organization will have to fire the CEO Matt Ken. The NO stock being valued more than the YES stock indicates a potential lack of confidence from investors in the company&apos;s future performance under Matt Ken&apos;s leadership.</p>}
         </div>
-        <button className='bg-white px-3 py-2 font-mono mt-3 text-[#FF0642]'>More Info</button>
+        {/* <button className='bg-white px-3 py-2 font-mono mt-3 text-[#FF0642]'>More Info</button> */}
       </div> : null}
       
     </div>
