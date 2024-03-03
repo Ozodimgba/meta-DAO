@@ -1,11 +1,12 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { DotLottiePlayer, Controls } from '@dotlottie/react-player';
+import ReactMarkdown from 'react-markdown';
 
 type Data = {
     title: string;
     image: string;
-    content: string;
+    content: number;
 }
 
 interface ComponentProps {
@@ -14,7 +15,34 @@ interface ComponentProps {
   }
 function Explainer({ update, data }: ComponentProps) {
 
-    console.log(data)
+  const ExplainerOne = () => {
+    return(
+        <div className='h-full w-full pb-[10%] text-[#FF0642]'>
+          <h3>The conditional vault program in MetaDao is a key mechanism for implementing its futarchy governance system. Since blockchains can&apos;t truly &apos;revert&apos; transactions, conditional vaults create a system of simulated reverts for prediction markets.</h3>
+          <h4 className='font-bold mt-5'>Here&apos;s how it works:</h4>
+          <ol className='mt-5'>
+            <li>
+            <span className='font-bold'>Conditional Vault Creation:</span> Before a proposal goes to market,
+            a conditional vault is created for each relevant token (like USDC and META). These vaults are linked to the proposal and a designated settlement authority
+            </li>
+            <li className='mt-4'>
+            <span className='font-bold'>Minting Conditional Tokens:</span> Two types of conditional tokens are minted within the vault: (like USDC and META).  
+            </li>
+            <li className='mt-4 pl-8'>
+            <span className='font-bold'>Conditional-on-Pass Tokens:</span>Represent successful proposals and entitle holders to the underlying tokens upon proposal passage.  
+            </li>
+            <li className='mt-4 pl-8'>
+            <span className='font-bold'>Conditional-on-Fail Tokens:</span>Represent unsuccessful proposals. If the proposal fails, these tokens are used to &apos;revert&apos; the market by returning the original tokens deposited for prediction. 
+            </li>
+          </ol>
+          <p className='mt-4'>By using these conditional tokens, MetaDao simulates the ability to revert trades based on the proposal&apos;s outcome. This allows prediction markets to function effectively within the framework of the futarchy system.</p>
+        </div>
+    )
+  }
+
+  const content = [
+    <ExplainerOne key={1} />,
+  ]
 
   return (
     <motion.section
@@ -45,11 +73,11 @@ function Explainer({ update, data }: ComponentProps) {
         borderRadius: ["0%", "0%", "50%", "50%", "0%"]
       }}
       transition={{
-        duration: 2,
+        duration: 4,
         ease: "easeInOut",
         times: [0, 0.2, 0.5, 0.8, 1],
         repeat: Infinity,
-        repeatDelay: 1
+        repeatDelay: 3
       }}
       > THE METADAO </motion.div>
       </motion.div>
@@ -71,6 +99,7 @@ function Explainer({ update, data }: ComponentProps) {
         </div>
         </div>
         <motion.div
+
          animate={{
           translateY: ["300%", "0%"],
         }}
@@ -79,8 +108,11 @@ function Explainer({ update, data }: ComponentProps) {
         }}
         >
           <h3 className="text-5xl font-mono">{data?.title}</h3>
-          <p className="font-mono mt-8">TWAPs are a common tool for calculating average prices of an asset over a specified time interval. This helps reduce the impact of short-term price fluctuations</p>
-          <code>TWAP = (∑ (Price * Time)) / ∑ Time </code>
+          <div className='overflow-y-scroll max-w-full h-[55vh]'>
+          <div className="font-mono mt-8">{content[data.content]}</div>
+          </div>
+          
+          {/* <code>TWAP = (∑ (Price * Time)) / ∑ Time </code> */}
         </motion.div>
       </div>
      </div>

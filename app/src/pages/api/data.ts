@@ -2,22 +2,22 @@ export const data = [
     {
         title: "Conditional Vault Program",
         image: "",
-        content: ""
+        content: 0
     },
     {
         title: "TWAP Program",
         image: "",
-        content: ""
+        content: 1
     },
     {
         title: "Autocrat Program",
         image: "",
-        content: ""
+        content: 2
     },
     {
         title: "META Token",
         image: "",
-        content: ""
+        content: 3
     },
     
 ]

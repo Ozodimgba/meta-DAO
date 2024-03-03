@@ -273,7 +273,10 @@ export default function Home() {
        </div>
 
        <div className="h-full w-full">
-       <div className="h-[280px] w-[350px] flex flex-col justify-between bg-[#FF0642]">
+       <motion.div
+       whileHover={{ scale:1.03, y: -20}}
+       onClick={() => handleDrag(1)}
+       className="h-[280px] w-[350px] flex flex-col justify-between bg-[#FF0642]">
         <div className="h-[70px] flex justify-between w-full">
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] "></div>
@@ -290,7 +293,7 @@ export default function Home() {
           <div className="h-[70px] w-[70px] bg-black"></div>
           <div className="h-[70px] w-[70px] bg-black"></div>
         </div>
-       </div>
+       </motion.div>
        </div>
 
        <div  className=" flex  justify-end h-full w-full">
