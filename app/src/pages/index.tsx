@@ -554,7 +554,7 @@ export default function Home() {
       <div className="h-full w-full bg-[#00000030] grid grid-rows-8">
        <div className="row-span-7 flex p-[20%] justify-center items-center bg-gradient-to-t from-black via-black/30 to-transparent h-full w-full">
         <h3 className="text-white text-center text-5xl font-main font-bold">
-        A country with no lands, no leaders and no community
+        An on-chain country with no lands and no leaders.
         </h3>
        </div>
        <div className="h-full w-full px-5 flex items-center justify-between pr-8 text-white bg-black">
