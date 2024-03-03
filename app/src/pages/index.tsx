@@ -14,6 +14,7 @@ import AnimateText from "./components/AnimateH3";
 import Hero from "./components/Hero";
 import SectionOne from "./components/SectionOne";
 import TextReveal from "./components/TextReaveal";
+import Footer from "./components/Footer";
 import ProposalAnimation from "./components/ProposalAnimation";
 import Explainer from "./components/Explainer";
 import { data } from "./api/data";
@@ -544,28 +545,9 @@ export default function Home() {
      { showExplainer ?
       <Explainer update={setExplainer} data={data[dataNumber]} />
      : null}
-     <section
-     style={{ 
-      backgroundImage: 'url("map.svg")',
-      backgroundSize: 'contain',
-      backgroundPosition: 'center' 
-    }}
-     className="bg-black h-screen w-screen" >
-      <div className="h-full w-full bg-[#00000030] grid grid-rows-8">
-       <div className="row-span-7 flex p-[20%] justify-center items-center bg-gradient-to-t from-black via-black/30 to-transparent h-full w-full">
-        <h3 className="text-white text-center text-5xl font-main font-bold">
-        An on-chain country with no lands and no leaders.
-        </h3>
-       </div>
-       <div className="h-full w-full px-5 flex items-center justify-between pr-8 text-white bg-black">
-       <h3 className="font-mono">READ MORE</h3>
-       <button className="bg-[#FF0642] px-3 py-2 font-mono">
-        HERE
-       </button>
-       </div>
-      </div>
 
-     </section>
+
+     <Footer />
     </main>
   );
 }

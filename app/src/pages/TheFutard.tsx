@@ -3,7 +3,10 @@ import Giscus from "@giscus/react";
 
 function TheFutard() {
   return (
-    <div className='h-screen max-w-screen bg-black text-white'>TheFutard
+    <div className='h-screen max-w-screen font-main bg-black text-white'>
+      <div className='p-8'>
+        <h1 className='text-4xl font-bold text-white'>The Futard</h1>
+      </div>
 
     <div className='w-full px-8'>
     <Giscus
